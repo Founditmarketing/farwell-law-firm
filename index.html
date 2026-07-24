@@ -954,66 +954,9 @@ setup_collapsible_submenus();
 				
 				
 				<div class="et-pb-contact-message"></div>
-				
-				<div style="text-align:center;padding:40px 20px;font-family:system-ui,Arial,sans-serif">
-  <p style="font-size:18px;margin:0 0 16px;color:#333">Ready to get started? Reach out directly:</p>
-  <a href="tel:6606652115" style="display:inline-block;margin:8px;padding:14px 32px;background:#a38b49;color:#fff;font-weight:700;text-decoration:none;font-size:16px;letter-spacing:.5px">Call Us</a>
-  <a href="mailto:arfarwell@farwelllawfirm.com" style="display:inline-block;margin:8px;padding:14px 32px;background:#222;color:#fff;font-weight:700;text-decoration:none;font-size:16px;letter-spacing:.5px">Email Us</a>
 
-  <form class="fi-contact-form" data-fi-ignore style="max-width:540px;margin:32px auto 0;text-align:left">
-    <div style="display:flex;gap:12px;flex-wrap:wrap">
-      <input name="first_name" required placeholder="First Name*" style="flex:1 1 200px;width:100%;padding:12px 14px;border:1px solid #ccc;border-radius:4px;font-size:15px;box-sizing:border-box">
-      <input name="last_name" placeholder="Last Name" style="flex:1 1 200px;width:100%;padding:12px 14px;border:1px solid #ccc;border-radius:4px;font-size:15px;box-sizing:border-box">
-    </div>
-    <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:12px">
-      <input name="email" type="email" required placeholder="Email*" style="flex:1 1 200px;width:100%;padding:12px 14px;border:1px solid #ccc;border-radius:4px;font-size:15px;box-sizing:border-box">
-      <input name="phone" type="tel" placeholder="Phone" style="flex:1 1 200px;width:100%;padding:12px 14px;border:1px solid #ccc;border-radius:4px;font-size:15px;box-sizing:border-box">
-    </div>
-    <textarea name="message" rows="4" placeholder="How can we help?" style="width:100%;margin-top:12px;padding:12px 14px;border:1px solid #ccc;border-radius:4px;font-size:15px;box-sizing:border-box;resize:vertical"></textarea>
-    <input type="text" name="_website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
-    <button type="submit" style="margin-top:16px;width:100%;padding:15px;background:#a38b49;color:#fff;font-weight:700;font-size:16px;letter-spacing:.5px;border:none;border-radius:4px;cursor:pointer">SEND MESSAGE</button>
-    <p class="fi-form-msg" style="margin:12px 0 0;font-size:15px;text-align:center"></p>
-  </form>
-  <script>
-  (function () {
-    var form = document.currentScript.previousElementSibling;
-    var msg = form.querySelector('.fi-form-msg');
-    var btn = form.querySelector('button[type=submit]');
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      if (form._website && form._website.value) return; // honeypot
-      msg.style.color = '#555'; msg.textContent = 'Sending…';
-      btn.disabled = true;
-      var data = { _fi: 1, _page_url: location.href };
-      new FormData(form).forEach(function (v, k) { data[k] = v; });
-      fetch('https://www.founditos.com/api/contact-form/d09201ed-d8f1-42cb-a7ae-1f55d9754d88', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data)
-      })
-        .then(function (r) { return r.json().catch(function () { return {}; }).then(function (j) { return { ok: r.ok, j: j }; }); })
-        .then(function (res) {
-          if (res.ok && res.j.ok !== false) {
-            form.reset();
-            msg.style.color = '#1a7f37';
-            msg.textContent = res.j.message || "Message sent! We'll be in touch soon.";
-          } else {
-            msg.style.color = '#c0392b';
-            msg.textContent = (res.j && res.j.error) || 'Something went wrong. Please call or email us.';
-            btn.disabled = false;
-          }
-        })
-        .catch(function () {
-          msg.style.color = '#c0392b';
-          msg.textContent = 'Network error. Please call or email us.';
-          btn.disabled = false;
-        });
-    });
-  })();
-  </script>
-</div>
-<div style="display:none"><div class="et_pb_contact">
-					<form class="et_pb_contact_form clearfix" method="post" action="/">
+				<div class="et_pb_contact">
+					<form class="et_pb_contact_form clearfix fi-contact-form" method="post" action="/" data-fi-endpoint="https://www.founditos.com/api/contact-form/d09201ed-d8f1-42cb-a7ae-1f55d9754d88">
 						<p class="et_pb_contact_field et_pb_contact_field_0 et_pb_contact_field_half" data-id="first_name" data-type="input">
 				
 				
@@ -1050,16 +993,63 @@ setup_collapsible_submenus();
 				<label for="et_pb_contact_message_0" class="et_pb_contact_form_label">Message</label>
 				<textarea name="et_pb_contact_message_0" id="et_pb_contact_message_0" class="et_pb_contact_message input" data-required_mark="required" data-field_type="text" data-original_id="message" placeholder="Message"></textarea>
 			</p>
+						<input type="text" name="_website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
 						<input type="hidden" value="et_contact_proccess" name="et_pb_contactform_submit_0"/>
 						<div class="et_contact_bottom_container">
-							
+
 							<button type="submit" name="et_builder_submit_button" class="et_pb_contact_submit et_pb_button">Submit</button>
 						</div>
+						<p class="fi-form-msg" style="margin:12px 0 0;font-size:15px"></p>
 						<input type="hidden" id="_wpnonce-et-pb-contact-form-submitted-0" name="_wpnonce-et-pb-contact-form-submitted-0" value="7a9007c9ac" /><input type="hidden" name="_wp_http_referer" value="/" />
 					</form>
-				</div></div>
+				</div>
 			</div>
-			
+			<script>
+			(function () {
+			  var form = document.querySelector('#et_pb_contact_form_0 form.fi-contact-form');
+			  if (!form) return;
+			  var msg = form.querySelector('.fi-form-msg');
+			  var btn = form.querySelector('button[type=submit]');
+			  form.addEventListener('submit', function (e) {
+			    e.preventDefault();
+			    if (form._website && form._website.value) return; // honeypot
+			    msg.style.color = '#555'; msg.textContent = 'Sending…';
+			    btn.disabled = true;
+			    var data = {
+			      _fi: 1,
+			      _page_url: location.href,
+			      first_name: form.et_pb_contact_first_name_0.value,
+			      last_name: form.et_pb_contact_last_name_0.value,
+			      phone: form.et_pb_contact_phone_0.value,
+			      email: form.et_pb_contact_email_0.value,
+			      message: form.et_pb_contact_message_0.value
+			    };
+			    fetch(form.dataset.fiEndpoint, {
+			      method: 'POST',
+			      headers: { 'Content-Type': 'application/json' },
+			      body: JSON.stringify(data)
+			    })
+			      .then(function (r) { return r.json().catch(function () { return {}; }).then(function (j) { return { ok: r.ok, j: j }; }); })
+			      .then(function (res) {
+			        if (res.ok && res.j.ok !== false) {
+			          form.reset();
+			          msg.style.color = '#1a7f37';
+			          msg.textContent = res.j.message || "Message sent! We'll be in touch soon.";
+			        } else {
+			          msg.style.color = '#c0392b';
+			          msg.textContent = (res.j && res.j.error) || 'Something went wrong. Please call or email us.';
+			          btn.disabled = false;
+			        }
+			      })
+			      .catch(function () {
+			        msg.style.color = '#c0392b';
+			        msg.textContent = 'Network error. Please call or email us.';
+			        btn.disabled = false;
+			      });
+			  });
+			  })();
+			</script>
+
 			</div>
 				
 				
